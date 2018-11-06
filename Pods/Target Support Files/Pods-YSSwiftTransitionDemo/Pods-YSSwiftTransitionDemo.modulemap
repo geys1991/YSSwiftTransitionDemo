@@ -1,6 +1,0 @@
-framework module Pods_YSSwiftTransitionDemo {
-  umbrella header "Pods-YSSwiftTransitionDemo-umbrella.h"
-
-  export *
-  module * { export * }
-}
