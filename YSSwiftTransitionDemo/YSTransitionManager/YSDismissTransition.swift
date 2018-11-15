@@ -59,7 +59,28 @@ class YSDismissTransition: NSObject {
     let duration: TimeInterval = self.transitionDuration(transitonContext: transitionContext)
     let opts: UIView.AnimationOptions = transitionContext.isInteractive ? UIView.AnimationOptions.curveLinear : UIView.AnimationOptions.curveEaseOut
     
+    let animatedBlock: () -> Void = {
+      fromView?.frame = finalFrame
+      var frame: CGRect = toViewController.view.frame
+      frame.origin.x = 0
+      toViewController.view.frame = frame
+    }
     
+    let animationCompleteBlock: (Bool) -> Void = {
+      (finished: Bool) in
+      transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+    }
+    
+    if transitionContext.isInteractive {
+      animatedBlock()
+      animationCompleteBlock(true)
+    }else{
+      UIView.animate(withDuration: duration,
+                     delay: 0.0,
+                     options: [UIView.AnimationOptions.overrideInheritedOptions, opts],
+                     animations: animatedBlock,
+                     completion: animationCompleteBlock)
+    }
     
     
   }
