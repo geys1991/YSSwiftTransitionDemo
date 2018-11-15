@@ -81,8 +81,6 @@ class YSDismissTransition: NSObject {
                      animations: animatedBlock,
                      completion: animationCompleteBlock)
     }
-    
-    
   }
   
 
