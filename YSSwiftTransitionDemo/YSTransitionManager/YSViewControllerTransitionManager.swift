@@ -9,5 +9,8 @@
 import UIKit
 
 class YSViewControllerTransitionManager: NSObject, UIViewControllerTransitioningDelegate {
+  
+  var presentTransition: YSPresentTransition?
+  var dismissTransition: YSDismissTransition?
 
 }

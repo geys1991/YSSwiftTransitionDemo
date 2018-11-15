@@ -8,10 +8,10 @@
 
 import UIKit
 
-private let kAnimatedKey = "animated"
-private let kReverseKey = "reverse"
-private let kCompletionKey = "completion"
-private let kViewControllerKey = "viewController"
+fileprivate let kAnimatedKey = "animated"
+fileprivate let kReverseKey = "reverse"
+fileprivate let kCompletionKey = "completion"
+fileprivate let kViewControllerKey = "viewController"
 
 class YSTransitionManager: NSObject {
 
