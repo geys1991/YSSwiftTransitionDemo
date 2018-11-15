@@ -43,6 +43,7 @@
 		0994D667219C384500A9C1CC /* YSPresentTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSPresentTransition.swift; sourceTree = "<group>"; };
 		0994D669219C385B00A9C1CC /* YSDismissTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSDismissTransition.swift; sourceTree = "<group>"; };
 		09A1DF8221958FB50077421A /* YSViewControllerTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSViewControllerTransitionManager.swift; sourceTree = "<group>"; };
+		09DA7CDF219D71B4008475F6 /* YSSwiftTransitionDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YSSwiftTransitionDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		09EF517421918FF800730B1E /* YSSwiftTransitionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YSSwiftTransitionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09EF517721918FF800730B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09EF517921918FF800730B1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +127,7 @@
 				09EF517E21918FFA00730B1E /* Assets.xcassets */,
 				09EF518021918FFA00730B1E /* LaunchScreen.storyboard */,
 				09EF518321918FFA00730B1E /* Info.plist */,
+				09DA7CDF219D71B4008475F6 /* YSSwiftTransitionDemo-Bridging-Header.h */,
 			);
 			path = YSSwiftTransitionDemo;
 			sourceTree = "<group>";
@@ -324,6 +326,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -332,6 +335,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -585,14 +589,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = DLLTSLNW2D;
 				INFOPLIST_FILE = YSSwiftTransitionDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "YS-G.YSSwiftTransitionDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -604,14 +611,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = DLLTSLNW2D;
 				INFOPLIST_FILE = YSSwiftTransitionDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "YS-G.YSSwiftTransitionDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

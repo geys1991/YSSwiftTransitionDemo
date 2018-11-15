@@ -28,14 +28,36 @@ class YSDismissTransition: NSObject {
     return animationDuration!
   }
   
-  func animateTrtansition(transitionContext: UIViewControllerContextTransitioning?) -> Void {
-    
-    guard let transitionTemp = transitionContext else {
+  func animateTrtansition(transitionContext: UIViewControllerContextTransitioning) -> Void {
+
+    guard let toViewController: UIViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to),
+      let fromViewController: UIViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)  else {
       return
     }
     
-    let toViewController: UIViewController = transitionTemp.viewController(forKey: UITransitionContextViewControllerKey.to)!
-    let fromViewController: UIViewController = transitionTemp.viewController(forKey: UITransitionContextViewControllerKey.from)!
+    let containerView: UIView = transitionContext.containerView
+    var fromView: UIView? = YSTransitionManager.instance.topSnapShotView
+    if fromView != nil {
+      fromView = fromViewController.view
+    }else{
+      containerView.addSubview(fromView!)
+      fromViewController.view.removeFromSuperview()
+    }
+
+    let factor: CGFloat = revers ? -1 : 1
+    let initFrame: CGRect = transitionContext.initialFrame(for: fromViewController)
+    let screenBounds: CGRect = UIScreen.main.bounds
+    let finalFrame: CGRect = initFrame.offsetBy(dx: factor * screenBounds.size.width, dy: 0)
+    
+    containerView.addSubview(toViewController.view)
+    containerView.sendSubviewToBack(toViewController.view)
+    
+    var frame: CGRect = transitionContext.finalFrame(for: toViewController)
+    frame.origin.x = -1 * frame.size.width / 3 * factor
+    toViewController.view.frame = frame
+    
+    let duration: TimeInterval = self.transitionDuration(transitonContext: transitionContext)
+    let opts: UIView.AnimationOptions = transitionContext.isInteractive ? UIView.AnimationOptions.curveLinear : UIView.AnimationOptions.curveEaseOut
     
     
     

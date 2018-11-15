@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import YYKit
 
 fileprivate let kAnimatedKey = "animated"
 fileprivate let kReverseKey = "reverse"
@@ -17,6 +18,7 @@ class YSTransitionManager: NSObject {
 
   static let instance:YSTransitionManager = YSTransitionManager ()
   var tabbarController : UIViewController?
+  var topSnapShotView: UIView?
 
   // MARK: public methods
   
@@ -60,5 +62,19 @@ class YSTransitionManager: NSObject {
 
     let topViewController = self.topViewController()
     
+  }
+  
+  func snapShotTopView(vcToDismiss: UIViewController) -> Void {
+    var topViewController = self.topViewController()
+    if let topVC = topViewController.navigationController {
+      topViewController = topVC
+    }
+    let topView: UIView = UIImageView(image: topViewController.view.snapshotImage(afterScreenUpdates: true))
+    self.topSnapShotView = topView
+    if vcToDismiss.navigationController != nil {
+      vcToDismiss.navigationController?.view.addSubview(topView)
+    }else{
+      vcToDismiss.view.addSubview(topView)
+    }
   }
 }

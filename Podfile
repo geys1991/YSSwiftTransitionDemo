@@ -8,6 +8,7 @@ target 'YSSwiftTransitionDemo' do
   # Pods for YSSwiftTransitionDemo
 
 pod 'Moya', '~> 12.0.0-beta.1'
+pod 'YYKit', '~> 1.0.9'
   target 'YSSwiftTransitionDemoTests' do
     inherit! :search_paths
     # Pods for testing
