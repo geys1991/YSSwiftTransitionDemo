@@ -9,37 +9,33 @@
 import UIKit
 import YYKit
 
-fileprivate let kAnimatedKey = "animated"
-fileprivate let kReverseKey = "reverse"
-fileprivate let kCompletionKey = "completion"
-fileprivate let kViewControllerKey = "viewController"
+private let kAnimatedKey = "animated"
+private let kReverseKey = "reverse"
+private let kCompletionKey = "completion"
+private let kViewControllerKey = "viewController"
 
 class YSTransitionManager: NSObject {
 
-  static let instance:YSTransitionManager = YSTransitionManager ()
-  var tabbarController : UIViewController?
+  static let instance: YSTransitionManager = YSTransitionManager ()
+  var tabbarController: UIViewController?
   var topSnapShotView: UIView?
 
   // MARK: public methods
-  
   func presentTargetVC(target targetVC: UIViewController!,
                        animate animated: Bool,
-                       reve reverse : Bool,
-                       complete: @escaping () -> Void) -> Void {
+                       reve reverse: Bool,
+                       complete: @escaping () -> Void) {
     if targetVC == nil {
       return
     }
-    
     let completeBlock = complete
-    let transitionParams : [String : Any] = [ kViewControllerKey : targetVC ,
-                                              kReverseKey : reverse,
-                                              kAnimatedKey : animated,
-                                              kCompletionKey : completeBlock]
+    let transitionParams: [String: Any] = [ kViewControllerKey: targetVC ,
+                                              kReverseKey: reverse,
+                                              kAnimatedKey: animated,
+                                              kCompletionKey: completeBlock]
     self.YS_InternalPresentTargetVC(params: transitionParams)
   }
-  
   func topViewController() -> UIViewController {
-    
     var topViewController = self.tabbarController!
     while true {
       if topViewController.presentedViewController == nil {
@@ -47,24 +43,19 @@ class YSTransitionManager: NSObject {
       }
       topViewController = topViewController.presentedViewController!
     }
-    
     return topViewController
   }
-  
   // MARK: public methods
-  
-  private func YS_InternalPresentTargetVC(params : [String : Any])-> Void {
-    
+  private func YS_InternalPresentTargetVC(params: [String: Any]) {
     let targetVC = params[kViewControllerKey]
     let reverseFlag = params[kReverseKey]
     let animatedFlag = params[kAnimatedKey]
     let completeBlock = params[kCompletionKey]
 
     let topViewController = self.topViewController()
-    
+
   }
-  
-  func snapShotTopView(vcToDismiss: UIViewController) -> Void {
+  func snapShotTopView(vcToDismiss: UIViewController) {
     var topViewController = self.topViewController()
     if let topVC = topViewController.navigationController {
       topViewController = topVC
@@ -73,7 +64,7 @@ class YSTransitionManager: NSObject {
     self.topSnapShotView = topView
     if vcToDismiss.navigationController != nil {
       vcToDismiss.navigationController?.view.addSubview(topView)
-    }else{
+    } else {
       vcToDismiss.view.addSubview(topView)
     }
   }

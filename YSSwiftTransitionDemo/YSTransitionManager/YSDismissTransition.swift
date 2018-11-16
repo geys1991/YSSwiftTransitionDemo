@@ -9,37 +9,37 @@
 import UIKit
 
 class YSDismissTransition: NSObject {
-  
+
   var revers: Bool = false
   let animationDuration: TimeInterval?
   var transitionContext: UIViewControllerContextTransitioning?
-  
+
   override init() {
     animationDuration = 0.3
   }
-  
-  func gesturefinish() -> Void {
+
+  func gesturefinish() {
     if let transitionTemp = self.transitionContext {
       transitionTemp.completeTransition(transitionTemp.transitionWasCancelled)
     }
   }
-  
+
   func transitionDuration(transitonContext: UIViewControllerContextTransitioning) -> TimeInterval {
     return animationDuration!
   }
-  
-  func animateTrtansition(transitionContext: UIViewControllerContextTransitioning) -> Void {
+
+  func animateTrtansition(transitionContext: UIViewControllerContextTransitioning) {
 
     guard let toViewController: UIViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to),
       let fromViewController: UIViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)  else {
       return
     }
-    
+
     let containerView: UIView = transitionContext.containerView
     var fromView: UIView? = YSTransitionManager.instance.topSnapShotView
     if fromView != nil {
       fromView = fromViewController.view
-    }else{
+    } else {
       containerView.addSubview(fromView!)
       fromViewController.view.removeFromSuperview()
     }
@@ -48,33 +48,33 @@ class YSDismissTransition: NSObject {
     let initFrame: CGRect = transitionContext.initialFrame(for: fromViewController)
     let screenBounds: CGRect = UIScreen.main.bounds
     let finalFrame: CGRect = initFrame.offsetBy(dx: factor * screenBounds.size.width, dy: 0)
-    
+
     containerView.addSubview(toViewController.view)
     containerView.sendSubviewToBack(toViewController.view)
-    
+
     var frame: CGRect = transitionContext.finalFrame(for: toViewController)
     frame.origin.x = -1 * frame.size.width / 3 * factor
     toViewController.view.frame = frame
-    
+
     let duration: TimeInterval = self.transitionDuration(transitonContext: transitionContext)
     let opts: UIView.AnimationOptions = transitionContext.isInteractive ? UIView.AnimationOptions.curveLinear : UIView.AnimationOptions.curveEaseOut
-    
+
     let animatedBlock: () -> Void = {
       fromView?.frame = finalFrame
       var frame: CGRect = toViewController.view.frame
       frame.origin.x = 0
       toViewController.view.frame = frame
     }
-    
+
     let animationCompleteBlock: (Bool) -> Void = {
       (finished: Bool) in
       transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
     }
-    
+
     if transitionContext.isInteractive {
       animatedBlock()
       animationCompleteBlock(true)
-    }else{
+    } else {
       UIView.animate(withDuration: duration,
                      delay: 0.0,
                      options: [UIView.AnimationOptions.overrideInheritedOptions, opts],
@@ -82,6 +82,5 @@ class YSDismissTransition: NSObject {
                      completion: animationCompleteBlock)
     }
   }
-  
 
 }
