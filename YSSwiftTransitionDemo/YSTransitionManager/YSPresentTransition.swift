@@ -40,8 +40,8 @@ class YSPresentTransition: NSObject {
                    animations: {
                     let fromeFrame: CGRect = fromVC.view.frame
                     fromVC.view.frame = fromeFrame.offsetBy(dx: fromeFrame.size.width / 3 * factor, dy: 0)
-    }) { (_) in
+    }, completion: { _ in
       transitionContext.completeTransition(true)
-    }
+    })
   }
 }
