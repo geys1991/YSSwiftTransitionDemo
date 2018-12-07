@@ -8,17 +8,16 @@
 
 import UIKit
 
-class YSPresentTransition: NSObject {
-
+class YSPresentTransition: NSObject, UIViewControllerAnimatedTransitioning {
   let animationDuration: TimeInterval?
   var revers: Bool = false
   override init() {
     animationDuration = 0.3
   }
-  func transitionDuration(transitonContext: UIViewControllerContextTransitioning) -> TimeInterval {
+  func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
     return animationDuration!
   }
-  func animatedTransition(transitionContext: UIViewControllerContextTransitioning) {
+  func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
     let toViewController: UIViewController? = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)
     let fromViewController: UIViewController? = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)
     guard let toVC = toViewController, let fromVC = fromViewController else {
@@ -32,8 +31,7 @@ class YSPresentTransition: NSObject {
     let factor: CGFloat = self.revers ? -1 : 1
     captureView.frame = CGRect(origin: finalFrame.origin, size: CGSize(width: factor * screenBounds.size.width, height: 0))
     containerView.addSubview(captureView)
-
-    let durationTime: TimeInterval = self.transitionDuration(transitonContext: transitionContext)
+    let durationTime: TimeInterval = self.transitionDuration(using: transitionContext)
     UIView.animate(withDuration: durationTime,
                    delay: 0.0,
                    options: [.curveEaseInOut, .overrideInheritedOptions],

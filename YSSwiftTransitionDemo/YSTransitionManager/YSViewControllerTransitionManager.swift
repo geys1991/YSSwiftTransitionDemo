@@ -9,6 +9,22 @@
 import UIKit
 
 class YSViewControllerTransitionManager: NSObject, UIViewControllerTransitioningDelegate {
-  var presentTransition: YSPresentTransition?
-  var dismissTransition: YSDismissTransition?
+  var presentTransition: YSPresentTransition = YSPresentTransition()
+  var dismissTransition: YSDismissTransition = YSDismissTransition()
+  var interactionController: YSSwipeBackInteractionController = YSSwipeBackInteractionController()
+  override init() {
+    super.init()
+    let context: YSGestureTransitionBackContext = YSGestureTransitionBackContext()
+    dismissTransition.context = context
+  }
+  func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return dismissTransition
+  }
+  func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return presentTransition
+  }
+//  func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+//    
+//  }
+
 }

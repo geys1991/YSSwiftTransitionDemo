@@ -19,6 +19,7 @@ class YSTransitionManager: NSObject {
   static let instance: YSTransitionManager = YSTransitionManager ()
   var tabbarController: UIViewController?
   var topSnapShotView: UIView?
+  
 
   // MARK: public methods
   func presentTargetVC(target targetVC: UIViewController!,
