@@ -87,32 +87,30 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
         parentVC = parentViewController
         if parentViewController.isBeingPresented || parentViewController.isBeingDismissed {
           self.interactionInProgress = false
-          break
         }
-      }
-      self.interactionInProgress = true
-      if let target: YSSwipeBackInteractionControllerDelegate = self.getProperDelegate(gestureRecognizer: gesture) as? YSSwipeBackInteractionControllerDelegate {
-        if target.fireBackGesture?() != nil {
-          
-        } else {
-          let complete = {
-            // TODO: config status bar
-          }
-          if parentVC?.navigationController != nil {
-            parentVC?.navigationController?.dismiss(animated: true, completion: complete)
+      } else {
+        self.interactionInProgress = true
+        if let target: YSSwipeBackInteractionControllerDelegate = self.getProperDelegate(gestureRecognizer: gesture) as? YSSwipeBackInteractionControllerDelegate {
+          if target.fireBackGesture?() != nil {
+            
           } else {
-            parentVC?.dismiss(animated: true, completion: complete)
+            let complete = {
+              // TODO: config status bar
+            }
+            if parentVC?.navigationController != nil {
+              parentVC?.navigationController?.dismiss(animated: true, completion: complete)
+            } else {
+              parentVC?.dismiss(animated: true, completion: complete)
+            }
           }
         }
+        gestureBackInteractionDelegate?.gestureBackBegin?()
       }
-      gestureBackInteractionDelegate?.gestureBackBegin?()
-      break
     case .changed:
       gestureChanged = true
       let fraction: CGFloat = CGFloat(fminf(fmaxf(Float(transitionPoint.x / UIScreen.main.bounds.size.width), 0.0), 1.0))
       shouldCompleteTransition = fraction > 0.5
       self.update(fraction)
-      break
     case .ended, .cancelled:
       context.gestueFinished = true
       interactionInProgress = false

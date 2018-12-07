@@ -13,6 +13,7 @@ private let kAnimatedKey = "animated"
 private let kReverseKey = "reverse"
 private let kCompletionKey = "completion"
 private let kViewControllerKey = "viewController"
+private var kTransition = "transition"
 
 class YSTransitionManager: NSObject {
 
@@ -48,12 +49,33 @@ class YSTransitionManager: NSObject {
   }
   // MARK: public methods
   private func YS_InternalPresentTargetVC(params: [String: Any]) {
-    let targetVC = params[kViewControllerKey]
-    let reverseFlag = params[kReverseKey]
-    let animatedFlag = params[kAnimatedKey]
-    let completeBlock = params[kCompletionKey]
-
+    guard let targetViewController = params[kViewControllerKey] as? UIViewController else {
+      return
+    }
+    var reverse: Bool = false
+    if let reverseFlag = params[kReverseKey] as? Bool {
+      reverse = reverseFlag
+    }
+    var animated: Bool = false
+    if let animatedFlag = params[kAnimatedKey] as? Bool {
+      animated = animatedFlag
+    }
+    var completeBlock: () -> Void = {
+      
+    }
+    if let complete = params[kCompletionKey] as? () -> Void {
+      completeBlock = complete
+    }
     let topViewController = self.topViewController()
+    let transitionManager: YSViewControllerTransitionManager = YSViewControllerTransitionManager()
+    targetViewController.transitioningDelegate = transitionManager
+    objc_setAssociatedObject(targetViewController, &kTransition, transitionManager, .OBJC_ASSOCIATION_RETAIN)
+    if !topViewController.isBeingDismissed && !topViewController.isBeingPresented {
+      topViewController.present(targetViewController, animated: animated) {
+        transitionManager.wireToViewController(viewController: targetViewController)
+        completeBlock()
+      }
+    }
 
   }
   func snapShotTopView(vcToDismiss: UIViewController) {

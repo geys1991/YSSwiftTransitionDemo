@@ -23,6 +23,9 @@ class YSViewControllerTransitionManager: NSObject, UIViewControllerTransitioning
   func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     return presentTransition
   }
+  func wireToViewController(viewController: UIViewController) {
+    interactionController.wireToViewController(viewController: viewController)
+  }
 //  func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
 //    
 //  }
