@@ -22,8 +22,8 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
   var forNavigationController: Bool = false
   var shouldCompleteTransition: Bool = false
   var gestureChanged: Bool = false
-  override var completionSpeed: CGFloat{
-    set{
+  override var completionSpeed: CGFloat {
+    set {
       
     }
     get {
