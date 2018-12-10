@@ -17,11 +17,13 @@ import UIKit
 }
 
 class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UIGestureRecognizerDelegate {
+  // MARK: perproty
   var context: YSGestureTransitionBackContext = YSGestureTransitionBackContext()
   var interactionInProgress: Bool = false
   var forNavigationController: Bool = false
   var shouldCompleteTransition: Bool = false
   var gestureChanged: Bool = false
+  weak var gestureBackInteractionDelegate: YSSwipeBackInteractionControllerDelegate?
   override var completionSpeed: CGFloat {
     set {
       
@@ -30,7 +32,6 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
       return min(1, 1 - self.percentComplete)
     }
   }
-  weak var gestureBackInteractionDelegate: YSSwipeBackInteractionControllerDelegate?
   func setGestureBackInteractionDelegate(gestureDelegate: YSSwipeBackInteractionControllerDelegate) {
     gestureBackInteractionDelegate = gestureDelegate
   }

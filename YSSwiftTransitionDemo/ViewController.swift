@@ -24,9 +24,6 @@ class ViewController: UIViewController {
     let targetVC: YSNextViewController = YSNextViewController()
     targetVC.title = "next"
     let navi: UINavigationController = UINavigationController(rootViewController: targetVC)
-//    self.navigationController?.present(navi, animated: true, completion: {
-//      print("endddd")
-//    })
     YSTransitionManager.instance.presentTargetVC(target: navi, animate: true, reve: false) {
       print("end")
     }
