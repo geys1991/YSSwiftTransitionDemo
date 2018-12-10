@@ -31,7 +31,6 @@ class YSPresentTransition: NSObject, UIViewControllerAnimatedTransitioning {
     let factor: CGFloat = self.revers ? -1 : 1
 //    captureView.frame = CGRect(origin: finalFrame.origin, size: CGSize(width: factor * screenBounds.size.width, height: 0))
     captureView.frame = finalFrame.offsetBy(dx: factor * screenBounds.size.width, dy: 0)
-    print("rect : -- \(captureView.frame)")
     containerView.addSubview(captureView)
     let durationTime: TimeInterval = self.transitionDuration(using: transitionContext)
     UIView.animate(withDuration: durationTime,

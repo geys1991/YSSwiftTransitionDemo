@@ -53,7 +53,6 @@ class YSDismissTransition: NSObject, UIViewControllerAnimatedTransitioning {
       var frame: CGRect = toViewController.view.frame
       frame.origin.x = 0
       toViewController.view.frame = frame
-      print("")
     }
     let animationCompleteBlock: (Bool) -> Void = {
       (finished: Bool) in

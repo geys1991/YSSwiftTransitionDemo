@@ -136,7 +136,6 @@
 				09EF518321918FFA00730B1E /* Info.plist */,
 				09DA7CDF219D71B4008475F6 /* YSSwiftTransitionDemo-Bridging-Header.h */,
 				09F5262721BA49850000FC23 /* YSNextViewController.swift */,
-				09F5262B21BE4A030000FC23 /* YSNavigationOperation.swift */,
 				09EF517E21918FFA00730B1E /* Assets.xcassets */,
 			);
 			path = YSSwiftTransitionDemo;
@@ -163,6 +162,7 @@
 		09EF51A5219193A600730B1E /* YSTransitionManager */ = {
 			isa = PBXGroup;
 			children = (
+				09F5262B21BE4A030000FC23 /* YSNavigationOperation.swift */,
 				09EF51A62191983C00730B1E /* YSTransitionManager.swift */,
 				09A1DF8221958FB50077421A /* YSViewControllerTransitionManager.swift */,
 				0994D667219C384500A9C1CC /* YSPresentTransition.swift */,
