@@ -29,7 +29,9 @@ class YSPresentTransition: NSObject, UIViewControllerAnimatedTransitioning {
     let captureView: UIView = toVC.view
     // MARK: factor ???
     let factor: CGFloat = self.revers ? -1 : 1
-    captureView.frame = CGRect(origin: finalFrame.origin, size: CGSize(width: factor * screenBounds.size.width, height: 0))
+//    captureView.frame = CGRect(origin: finalFrame.origin, size: CGSize(width: factor * screenBounds.size.width, height: 0))
+    captureView.frame = finalFrame.offsetBy(dx: factor * screenBounds.size.width, dy: 0)
+    print("rect : -- \(captureView.frame)")
     containerView.addSubview(captureView)
     let durationTime: TimeInterval = self.transitionDuration(using: transitionContext)
     UIView.animate(withDuration: durationTime,
@@ -37,7 +39,8 @@ class YSPresentTransition: NSObject, UIViewControllerAnimatedTransitioning {
                    options: [.curveEaseInOut, .overrideInheritedOptions],
                    animations: {
                     let fromeFrame: CGRect = fromVC.view.frame
-                    fromVC.view.frame = fromeFrame.offsetBy(dx: fromeFrame.size.width / 3 * factor, dy: 0)
+                    fromVC.view.frame = fromeFrame.offsetBy(dx: -1 * fromeFrame.size.width / 3 * factor, dy: 0)
+                    captureView.frame = finalFrame
     }, completion: { _ in
       transitionContext.completeTransition(true)
     })

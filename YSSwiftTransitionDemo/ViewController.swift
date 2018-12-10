@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 //    self.navigationController?.present(navi, animated: true, completion: {
 //      print("endddd")
 //    })
-    YSTransitionManager.instance.presentTargetVC(target: navi, animate: true, reve: true) {
+    YSTransitionManager.instance.presentTargetVC(target: navi, animate: true, reve: false) {
       print("end")
     }
   }

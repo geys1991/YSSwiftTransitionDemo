@@ -35,7 +35,7 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
     gestureBackInteractionDelegate = gestureDelegate
   }
   func wireToViewController(viewController: UIViewController) {
-    self.prepareGestureRecognizerInView(view: viewController.view)
+    prepareGestureRecognizerInView(view: viewController.view)
   }
   func prepareGestureRecognizerInView(view: UIView) {
     let edgeGesture: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleScreenEdgeGesture(gesture:)))
@@ -68,7 +68,7 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
     return true
   }
   func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-    if let target: YSSwipeBackInteractionControllerDelegate = self.getProperDelegate(gestureRecognizer: gestureRecognizer) as? YSSwipeBackInteractionControllerDelegate {
+    if let target: YSSwipeBackInteractionControllerDelegate = getProperDelegate(gestureRecognizer: gestureRecognizer) as? YSSwipeBackInteractionControllerDelegate {
       if target.disableBackGesture?() != nil {
         return false
       }
@@ -81,34 +81,34 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
     let transitionPoint: CGPoint = gesture.translation(in: gesture.view?.superview)
     switch gesture.state {
     case .began:
-      self.context.gestueFinished = false
+      context.gestueFinished = false
       var parentVC: UIViewController?
       if let parentViewController: UIViewController = gesture.view?.viewController {
         parentVC = parentViewController
         if parentViewController.isBeingPresented || parentViewController.isBeingDismissed {
-          self.interactionInProgress = false
+          interactionInProgress = false
+          break
         }
-      } else {
-        self.interactionInProgress = true
-        if let target: YSSwipeBackInteractionControllerDelegate = self.getProperDelegate(gestureRecognizer: gesture) as? YSSwipeBackInteractionControllerDelegate {
-          if target.fireBackGesture?() == nil {
-            let complete = {
-              // TODO: config status bar
-            }
-            if parentVC?.navigationController != nil {
-              parentVC?.navigationController?.dismiss(animated: true, completion: complete)
-            } else {
-              parentVC?.dismiss(animated: true, completion: complete)
-            }
+      }
+      interactionInProgress = true
+      if let target: YSSwipeBackInteractionControllerDelegate = getProperDelegate(gestureRecognizer: gesture) as? YSSwipeBackInteractionControllerDelegate {
+        if target.fireBackGesture?() == nil {
+          let complete = {
+            // TODO: config status bar
+          }
+          if parentVC?.navigationController != nil {
+            parentVC?.navigationController?.dismiss(animated: true, completion: complete)
+          } else {
+            parentVC?.dismiss(animated: true, completion: nil)
           }
         }
-        gestureBackInteractionDelegate?.gestureBackBegin?()
       }
+      gestureBackInteractionDelegate?.gestureBackBegin?()
     case .changed:
       gestureChanged = true
       let fraction: CGFloat = CGFloat(fminf(fmaxf(Float(transitionPoint.x / UIScreen.main.bounds.size.width), 0.0), 1.0))
       shouldCompleteTransition = fraction > 0.5
-      self.update(fraction)
+      update(fraction)
     case .ended, .cancelled:
       context.gestueFinished = true
       interactionInProgress = false
@@ -116,11 +116,28 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
         shouldCompleteTransition = true
       }
       if !shouldCompleteTransition || gesture.state == .cancelled {
-        self.cancel()
+        cancel()
         gestureBackInteractionDelegate?.gestureBackCancel?()
         gestureChanged = false
       } else {
-        gestureBackInteractionDelegate?.gestureBackCancel?()
+        let parentVC = gesture.view?.viewController
+        if gestureBackInteractionDelegate?.gestureBackFinished?() == nil {
+          var targetViewController: UIViewController?
+          if let parentVCNaviTemp = parentVC as? UINavigationController {
+            if let firstViewController = parentVCNaviTemp.viewControllers.first {
+              targetViewController = firstViewController
+            } else {
+              if let parentVCTemp = parentVC {
+                targetViewController = parentVCTemp
+              }
+            }
+          }
+          YSTransitionManager.instance.swipeBackSuccessFinishProcessing = true
+          // 调用返回方法
+          targetViewController?.backButtonOperation(backButton: nil)
+          YSTransitionManager.instance.swipeBackSuccessFinishProcessing = false
+          finish()
+        }
       }
     default:
       return

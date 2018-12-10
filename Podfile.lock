@@ -7,7 +7,6 @@ PODS:
     - Result (~> 4.0)
   - Result (4.0.0)
   - RxSwift (4.3.1)
-  - SwiftLint (0.27.0)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -15,7 +14,6 @@ PODS:
 DEPENDENCIES:
   - Moya (~> 12.0.0-beta.1)
   - RxSwift (~> 4.3.1)
-  - SwiftLint (~> 0.27.0)
   - YYKit (~> 1.0.9)
 
 SPEC REPOS:
@@ -24,7 +22,6 @@ SPEC REPOS:
     - Moya
     - Result
     - RxSwift
-    - SwiftLint
     - YYKit
 
 SPEC CHECKSUMS:
@@ -32,9 +29,8 @@ SPEC CHECKSUMS:
   Moya: 1b8d16b4dac4302c323ca95077a733836e73484a
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
-  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 67931ce651a166d48b7f9c41777880510577a5e2
+PODFILE CHECKSUM: 06f8f552751ef2fce283758bc11ac315a21f37aa
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.2

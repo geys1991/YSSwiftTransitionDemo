@@ -31,7 +31,7 @@ class YSDismissTransition: NSObject, UIViewControllerAnimatedTransitioning {
     }
     let containerView: UIView = transitionContext.containerView
     var fromView: UIView? = YSTransitionManager.instance.topSnapShotView
-    if fromView != nil {
+    if fromView == nil {
       fromView = fromViewController.view
     } else {
       containerView.addSubview(fromView!)
@@ -53,12 +53,14 @@ class YSDismissTransition: NSObject, UIViewControllerAnimatedTransitioning {
       var frame: CGRect = toViewController.view.frame
       frame.origin.x = 0
       toViewController.view.frame = frame
+      print("")
     }
     let animationCompleteBlock: (Bool) -> Void = {
       (finished: Bool) in
       transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
     }
-    if transitionContext.isInteractive {
+  
+    if transitionContext.isInteractive && context?.gestueFinished ?? false {
       animatedBlock()
       animationCompleteBlock(true)
     } else {
