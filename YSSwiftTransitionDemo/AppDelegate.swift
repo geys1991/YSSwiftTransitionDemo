@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.main.bounds)
     let rootVC: ViewController = ViewController()
     let nav: UINavigationController = UINavigationController(rootViewController: rootVC)
+    YSTransitionManager.instance.tabbarController = nav
     window?.rootViewController = nav
     window?.makeKeyAndVisible()
     return true

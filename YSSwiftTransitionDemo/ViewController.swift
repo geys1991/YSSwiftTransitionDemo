@@ -12,6 +12,23 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = UIColor.red
+    self.view.backgroundColor = UIColor.white
+    
+    let btn: UIButton = UIButton(frame: CGRect(x: 50, y: 200, width: 100, height: 50))
+    btn.setTitle("click", for: .normal)
+    btn.setTitleColor(UIColor.black, for: .normal)
+    btn.addTarget(self, action: #selector(click), for: .touchUpInside)
+    view.addSubview(btn)
+  }
+  @objc func click() {
+    let targetVC: YSNextViewController = YSNextViewController()
+    targetVC.title = "next"
+    let navi: UINavigationController = UINavigationController(rootViewController: targetVC)
+//    self.navigationController?.present(navi, animated: true, completion: {
+//      print("endddd")
+//    })
+    YSTransitionManager.instance.presentTargetVC(target: navi, animate: true, reve: true) {
+      print("end")
+    }
   }
 }

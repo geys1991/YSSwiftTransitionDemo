@@ -91,9 +91,7 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
       } else {
         self.interactionInProgress = true
         if let target: YSSwipeBackInteractionControllerDelegate = self.getProperDelegate(gestureRecognizer: gesture) as? YSSwipeBackInteractionControllerDelegate {
-          if target.fireBackGesture?() != nil {
-            
-          } else {
+          if target.fireBackGesture?() == nil {
             let complete = {
               // TODO: config status bar
             }

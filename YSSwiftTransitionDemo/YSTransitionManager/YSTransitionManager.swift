@@ -20,8 +20,6 @@ class YSTransitionManager: NSObject {
   static let instance: YSTransitionManager = YSTransitionManager ()
   var tabbarController: UIViewController?
   var topSnapShotView: UIView?
-  
-
   // MARK: public methods
   func presentTargetVC(target targetVC: UIViewController!,
                        animate animated: Bool,
@@ -68,6 +66,9 @@ class YSTransitionManager: NSObject {
     }
     let topViewController = self.topViewController()
     let transitionManager: YSViewControllerTransitionManager = YSViewControllerTransitionManager()
+    transitionManager.dismissTransition.revers = true
+    transitionManager.presentTransition.revers = true
+    
     targetViewController.transitioningDelegate = transitionManager
     objc_setAssociatedObject(targetViewController, &kTransition, transitionManager, .OBJC_ASSOCIATION_RETAIN)
     if !topViewController.isBeingDismissed && !topViewController.isBeingPresented {
