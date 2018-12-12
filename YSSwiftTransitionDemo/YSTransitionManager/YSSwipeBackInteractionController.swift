@@ -119,12 +119,26 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
       gestureBackInteractionDelegate?.gestureBackBegin?()
     case .changed:
       gestureChanged = true
-      let fraction: CGFloat = CGFloat(fminf(fmaxf(abs(Float(transitionPoint.x / UIScreen.main.bounds.size.width)), 0.0), 1.0))
+      let fractionFlag: Int = reverse ? -1 : 1
+      var fraction: CGFloat = 0.0
+      if reverse {
+        fraction = CGFloat(fmaxf(fminf(Float(transitionPoint.x / UIScreen.main.bounds.size.width), 0.0), -1.0)) * CGFloat(fractionFlag)
+      } else {
+        fraction = CGFloat(fminf(fmaxf(Float(transitionPoint.x / UIScreen.main.bounds.size.width), 0.0), 1.0)) * CGFloat(fractionFlag)
+      }
       shouldCompleteTransition = fraction > 0.5
       update(fraction)
     case .ended, .cancelled:
       context.gestueFinished = true
       interactionInProgress = false
+      let velocityValue = gesture.velocity(in: gesture.view?.superview).x
+      if abs(velocityValue) > 100 {
+        if reverse && velocityValue < 0 {
+          shouldCompleteTransition = true
+        } else if !reverse && velocityValue > 0 {
+          shouldCompleteTransition = true
+        }
+      }
       if !shouldCompleteTransition || gesture.state == .cancelled {
         cancel()
         gestureBackInteractionDelegate?.gestureBackCancel?()

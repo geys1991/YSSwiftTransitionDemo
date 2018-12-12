@@ -14,14 +14,14 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     self.view.backgroundColor = UIColor.white
     
-    let btn: UIButton = UIButton(frame: CGRect(x: 50, y: 200, width: 100, height: 50))
-    btn.setTitle("click 1", for: .normal)
+    let btn: UIButton = UIButton(frame: CGRect(x: 50, y: 200, width: 200, height: 50))
+    btn.setTitle("click ===>>>", for: .normal)
     btn.setTitleColor(UIColor.black, for: .normal)
     btn.addTarget(self, action: #selector(click), for: .touchUpInside)
     view.addSubview(btn)
     
-    let btn1: UIButton = UIButton(frame: CGRect(x: 50, y: 300, width: 100, height: 50))
-    btn1.setTitle("click 2", for: .normal)
+    let btn1: UIButton = UIButton(frame: CGRect(x: 50, y: 300, width: 200, height: 50))
+    btn1.setTitle("<<<=== click", for: .normal)
     btn1.setTitleColor(UIColor.black, for: .normal)
     btn1.addTarget(self, action: #selector(clickReverse), for: .touchUpInside)
     view.addSubview(btn1)
