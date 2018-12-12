@@ -10,11 +10,11 @@ import UIKit
 
 class YSNextViewController: UIViewController, YSSwipeBackInteractionControllerDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      view.backgroundColor = UIColor.blue
-      navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "loginBackButton"), style: .plain, target: self, action: #selector(backButtonOperation(backButton:)))
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    view.backgroundColor = UIColor.blue
+    navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "loginBackButton"), style: .plain, target: self, action: #selector(backButtonOperation(backButton:)))
+  }
   
   override func backButtonOperation(backButton: Any?) {
     navigationController?.dismiss(animated: true, completion: nil)

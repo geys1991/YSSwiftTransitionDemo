@@ -17,13 +17,16 @@ import UIKit
 }
 
 class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UIGestureRecognizerDelegate {
+  
   // MARK: perproty
   var context: YSGestureTransitionBackContext = YSGestureTransitionBackContext()
   var interactionInProgress: Bool = false
   var forNavigationController: Bool = false
   var shouldCompleteTransition: Bool = false
+  var reverse: Bool = false
   var gestureChanged: Bool = false
   weak var gestureBackInteractionDelegate: YSSwipeBackInteractionControllerDelegate?
+  
   override var completionSpeed: CGFloat {
     set {
       
@@ -32,25 +35,32 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
       return min(1, 1 - self.percentComplete)
     }
   }
+  
   func setGestureBackInteractionDelegate(gestureDelegate: YSSwipeBackInteractionControllerDelegate) {
     gestureBackInteractionDelegate = gestureDelegate
   }
+  
   func wireToViewController(viewController: UIViewController) {
     prepareGestureRecognizerInView(view: viewController.view)
   }
+  
   func prepareGestureRecognizerInView(view: UIView) {
     let edgeGesture: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleScreenEdgeGesture(gesture:)))
-    edgeGesture.edges = UIRectEdge.left
+    edgeGesture.edges = reverse ? .right : .left
     view.addGestureRecognizer(edgeGesture)
     edgeGesture.delegate = self
   }
+  
   // MARK: UIGestureRecognizerDelegate
+  
   func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
     return true
   }
+  
   func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
     return true
   }
+  
   func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
     var viewController: UIViewController?
     if let targetVC = gestureRecognizer.view?.viewController {
@@ -68,6 +78,7 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
     }
     return true
   }
+  
   func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
     if let target: YSSwipeBackInteractionControllerDelegate = getProperDelegate(gestureRecognizer: gestureRecognizer) as? YSSwipeBackInteractionControllerDelegate {
       if target.disableBackGesture?() != nil {
@@ -78,6 +89,7 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
   }
   
   // MARK: private method
+  
   @objc func handleScreenEdgeGesture(gesture: UIScreenEdgePanGestureRecognizer) {
     let transitionPoint: CGPoint = gesture.translation(in: gesture.view?.superview)
     switch gesture.state {
@@ -107,7 +119,7 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
       gestureBackInteractionDelegate?.gestureBackBegin?()
     case .changed:
       gestureChanged = true
-      let fraction: CGFloat = CGFloat(fminf(fmaxf(Float(transitionPoint.x / UIScreen.main.bounds.size.width), 0.0), 1.0))
+      let fraction: CGFloat = CGFloat(fminf(fmaxf(abs(Float(transitionPoint.x / UIScreen.main.bounds.size.width)), 0.0), 1.0))
       shouldCompleteTransition = fraction > 0.5
       update(fraction)
     case .ended, .cancelled:
@@ -144,6 +156,7 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
       return
     }
   }
+  
   func getProperDelegate(gestureRecognizer: UIGestureRecognizer) -> AnyObject? {
     var target: AnyObject?
     if gestureBackInteractionDelegate != nil {

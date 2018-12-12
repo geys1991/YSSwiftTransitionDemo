@@ -18,8 +18,8 @@ class YSPresentTransition: NSObject, UIViewControllerAnimatedTransitioning {
     return animationDuration!
   }
   func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-    let toViewController: UIViewController? = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)
-    let fromViewController: UIViewController? = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)
+    let toViewController: UIViewController? = transitionContext.viewController(forKey: .to)
+    let fromViewController: UIViewController? = transitionContext.viewController(forKey: .from)
     guard let toVC = toViewController, let fromVC = fromViewController else {
       return
     }
@@ -29,7 +29,6 @@ class YSPresentTransition: NSObject, UIViewControllerAnimatedTransitioning {
     let captureView: UIView = toVC.view
     // MARK: factor ???
     let factor: CGFloat = self.revers ? -1 : 1
-//    captureView.frame = CGRect(origin: finalFrame.origin, size: CGSize(width: factor * screenBounds.size.width, height: 0))
     captureView.frame = finalFrame.offsetBy(dx: factor * screenBounds.size.width, dy: 0)
     containerView.addSubview(captureView)
     let durationTime: TimeInterval = self.transitionDuration(using: transitionContext)

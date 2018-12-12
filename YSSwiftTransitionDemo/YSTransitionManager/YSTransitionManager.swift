@@ -21,7 +21,9 @@ class YSTransitionManager: NSObject {
   var tabbarController: UIViewController?
   var topSnapShotView: UIView?
   var swipeBackSuccessFinishProcessing: Bool = false
+  
   // MARK: public methods
+  
   func presentTargetVC(target targetVC: UIViewController!,
                        animate animated: Bool,
                        reve reverse: Bool,
@@ -30,12 +32,13 @@ class YSTransitionManager: NSObject {
       return
     }
     let completeBlock = complete
-    let transitionParams: [String: Any] = [ kViewControllerKey: targetVC ,
-                                              kReverseKey: reverse,
-                                              kAnimatedKey: animated,
-                                              kCompletionKey: completeBlock]
+    let transitionParams: [String: Any] = [kViewControllerKey: targetVC ,
+                                           kReverseKey: reverse,
+                                           kAnimatedKey: animated,
+                                           kCompletionKey: completeBlock]
     self.YS_InternalPresentTargetVC(params: transitionParams)
   }
+  
   func topViewController() -> UIViewController {
     var topViewController = self.tabbarController!
     while true {
@@ -46,7 +49,9 @@ class YSTransitionManager: NSObject {
     }
     return topViewController
   }
+  
   // MARK: public methods
+  
   private func YS_InternalPresentTargetVC(params: [String: Any]) {
     guard let targetViewController = params[kViewControllerKey] as? UIViewController else {
       return
@@ -69,6 +74,7 @@ class YSTransitionManager: NSObject {
     let transitionManager: YSViewControllerTransitionManager = YSViewControllerTransitionManager()
     transitionManager.dismissTransition.revers = reverse
     transitionManager.presentTransition.revers = reverse
+    transitionManager.interactionController.reverse = reverse
     
     targetViewController.transitioningDelegate = transitionManager
     objc_setAssociatedObject(targetViewController, &kTransition, transitionManager, .OBJC_ASSOCIATION_RETAIN)
@@ -78,8 +84,8 @@ class YSTransitionManager: NSObject {
         completeBlock()
       }
     }
-
   }
+  
   func snapShotTopView(vcToDismiss: UIViewController) {
     var topViewController = self.topViewController()
     if let topVC = topViewController.navigationController {
@@ -93,4 +99,5 @@ class YSTransitionManager: NSObject {
       vcToDismiss.view.addSubview(topView)
     }
   }
+  
 }
