@@ -125,9 +125,6 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
     case .ended, .cancelled:
       context.gestueFinished = true
       interactionInProgress = false
-      if gesture.velocity(in: gesture.view?.superview).x > 100 {
-        shouldCompleteTransition = true
-      }
       if !shouldCompleteTransition || gesture.state == .cancelled {
         cancel()
         gestureBackInteractionDelegate?.gestureBackCancel?()
