@@ -12,7 +12,7 @@ import UIKit
   @objc optional func gestureBackBegin()
   @objc optional func gestureBackCancel()
   @objc optional func gestureBackFinished()
-  @objc optional func disableBackGesture()
+  @objc optional func disableBackGesture() -> Bool
   @objc optional func fireBackGesture() -> Bool
 }
 
@@ -81,7 +81,7 @@ class YSSwipeBackInteractionController: UIPercentDrivenInteractiveTransition, UI
   
   func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
     if let target: YSSwipeBackInteractionControllerDelegate = getProperDelegate(gestureRecognizer: gestureRecognizer) as? YSSwipeBackInteractionControllerDelegate {
-      if target.disableBackGesture?() != nil {
+      if target.disableBackGesture?() == false {
         return false
       }
     }

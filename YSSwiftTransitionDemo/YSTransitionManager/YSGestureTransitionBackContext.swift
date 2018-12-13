@@ -11,7 +11,6 @@ import UIKit
 class YSGestureTransitionBackContext: NSObject {
   
   var gestueFinished: Bool = false
-  
   override init() {
     super.init()
   }

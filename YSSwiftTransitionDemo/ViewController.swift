@@ -8,8 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, YSSwipeBackInteractionControllerDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = UIColor.white
@@ -29,7 +28,6 @@ class ViewController: UIViewController {
 
   @objc func click() {
     let targetVC: YSNextViewController = YSNextViewController()
-    targetVC.title = "next"
     let navi: UINavigationController = UINavigationController(rootViewController: targetVC)
     YSTransitionManager.instance.presentTargetVC(target: navi, animate: true, reve: false) {
       // end operation

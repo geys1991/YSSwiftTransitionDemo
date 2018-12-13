@@ -24,21 +24,6 @@ class YSTransitionManager: NSObject {
   
   // MARK: public methods
   
-  func presentTargetVC(target targetVC: UIViewController!,
-                       animate animated: Bool,
-                       reve reverse: Bool,
-                       complete: @escaping () -> Void) {
-    if targetVC == nil {
-      return
-    }
-    let completeBlock = complete
-    let transitionParams: [String: Any] = [kViewControllerKey: targetVC ,
-                                           kReverseKey: reverse,
-                                           kAnimatedKey: animated,
-                                           kCompletionKey: completeBlock]
-    self.YS_InternalPresentTargetVC(params: transitionParams)
-  }
-  
   func topViewController() -> UIViewController {
     var topViewController = self.tabbarController!
     while true {
@@ -50,7 +35,68 @@ class YSTransitionManager: NSObject {
     return topViewController
   }
   
-  // MARK: public methods
+  func presentTargetVC(target targetVC: UIViewController!,
+                       complete: (() -> Void)?) {
+    self.presentTargetVC(target: targetVC,
+                         animate: true,
+                         reve: false,
+                         complete: complete)
+  }
+  
+  func presentTargetVC(target targetVC: UIViewController!,
+                       animate animated: Bool,
+                       reve reverse: Bool,
+                       complete: (() -> Void)?) {
+    if targetVC == nil {
+      return
+    }
+    let completeBlock = complete
+    let transitionParams: [String: Any] = [kViewControllerKey: targetVC ,
+                                           kReverseKey: reverse,
+                                           kAnimatedKey: animated,
+                                           kCompletionKey: completeBlock as Any]
+    self.YS_InternalPresentTargetVC(params: transitionParams)
+  }
+  
+  func dismissModalViewController(animated: Bool, complete: (() -> Void)?) {
+    self.dismissViewController(targetViewController: self.topViewController(), animated: animated, complete: complete)
+  }
+  
+  func dismissViewController(targetViewController: UIViewController, animated: Bool, complete: (() -> Void)?) {
+    if swipeBackSuccessFinishProcessing {
+      return
+    }
+    if !targetViewController.isBeingDismissed && !targetViewController.isBeingPresented {
+      targetViewController.dismiss(animated: animated) {
+        complete?()
+      }
+    }
+  }
+  
+  func dismissToClazz(clazzName: AnyClass, animated: Bool, complete: (() -> Void)?) {
+    var topViewController: UIViewController? = self.topViewController()
+    while topViewController != nil {
+      if topViewController?.isMember(of: UINavigationController.self) == true {
+        let targetNavi: UINavigationController = topViewController as! UINavigationController
+        let targetRootVC: UIViewController? = targetNavi.topViewController
+        if (targetRootVC?.isKind(of: clazzName.self)) == true {
+          if animated {
+            self.snapShotTopView(vcToDismiss: targetRootVC)
+          }
+          targetRootVC?.dismiss(animated: true
+            , completion: {
+              self.topSnapShotView = nil
+              self.topSnapShotView?.removeFromSuperview()
+              complete?()
+          })
+          break
+        }
+      }
+      topViewController = topViewController?.presentingViewController
+    }
+  }
+  
+  // MARK: private methods
   
   private func YS_InternalPresentTargetVC(params: [String: Any]) {
     guard let targetViewController = params[kViewControllerKey] as? UIViewController else {
@@ -86,17 +132,20 @@ class YSTransitionManager: NSObject {
     }
   }
   
-  func snapShotTopView(vcToDismiss: UIViewController) {
+  func snapShotTopView(vcToDismiss: UIViewController?) {
+    guard vcToDismiss != nil else {
+      return
+    }
     var topViewController = self.topViewController()
     if let topVC = topViewController.navigationController {
       topViewController = topVC
     }
     let topView: UIView = UIImageView(image: topViewController.view.snapshotImage(afterScreenUpdates: true))
     self.topSnapShotView = topView
-    if vcToDismiss.navigationController != nil {
-      vcToDismiss.navigationController?.view.addSubview(topView)
+    if vcToDismiss?.navigationController != nil {
+      vcToDismiss?.navigationController?.view.addSubview(topView)
     } else {
-      vcToDismiss.view.addSubview(topView)
+      vcToDismiss?.view.addSubview(topView)
     }
   }
   

@@ -27,7 +27,6 @@ class YSPresentTransition: NSObject, UIViewControllerAnimatedTransitioning {
     let containerView: UIView = transitionContext.containerView
     let screenBounds: CGRect = UIScreen.main.bounds
     let captureView: UIView = toVC.view
-    // MARK: factor ???
     let factor: CGFloat = self.revers ? -1 : 1
     captureView.frame = finalFrame.offsetBy(dx: factor * screenBounds.size.width, dy: 0)
     containerView.addSubview(captureView)
