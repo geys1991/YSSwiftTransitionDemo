@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, YSSwipeBackInteractionControllerDelegate {
+  var info: YSInfoModel = YSInfoModel()
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = UIColor.white
@@ -24,6 +25,12 @@ class ViewController: UIViewController, YSSwipeBackInteractionControllerDelegate
     btn1.setTitleColor(UIColor.black, for: .normal)
     btn1.addTarget(self, action: #selector(clickReverse), for: .touchUpInside)
     view.addSubview(btn1)
+    
+    let btn2: UIButton = UIButton(frame: CGRect(x: 50, y: 400, width: 200, height: 50))
+    btn2.setTitle("CLICK + 1", for: .normal)
+    btn2.setTitleColor(UIColor.black, for: .normal)
+    btn2.addTarget(self, action: #selector(clickPlus1), for: .touchUpInside)
+    view.addSubview(btn2)
   }
 
   @objc func click() {
@@ -43,4 +50,8 @@ class ViewController: UIViewController, YSSwipeBackInteractionControllerDelegate
     }
   }
   
+  @objc func clickPlus1() {
+    info.count = info.count + 1
+  }
+
 }
