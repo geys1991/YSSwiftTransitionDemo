@@ -4,7 +4,7 @@
 ```
 YSTransitionManager.instance.presentTargetVC(target: navi, animate: true, reve: false) {
       // end operation
-    }
+}
 ```
 
 ### 优点 
