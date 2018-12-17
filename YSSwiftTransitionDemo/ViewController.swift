@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import YSTransitionManager
 
 class ViewController: UIViewController, YSSwipeBackInteractionControllerDelegate {
   var info: YSInfoModel = YSInfoModel()

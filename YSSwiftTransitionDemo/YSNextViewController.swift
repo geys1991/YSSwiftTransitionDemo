@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import YSTransitionManager
 
 class YSNextViewController: UIViewController, YSSwipeBackInteractionControllerDelegate {
   

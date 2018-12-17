@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import YSTransitionManager
 
 class YSInfoModel: NSObject {
   var count: Int {

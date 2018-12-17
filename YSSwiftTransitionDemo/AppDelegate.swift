@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import YSTransitionManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

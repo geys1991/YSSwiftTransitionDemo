@@ -10,20 +10,13 @@
 		012A54D5B7903571D51464E4 /* Pods_YSSwiftTransitionDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 598030BD5B0DDB30DAB263E1 /* Pods_YSSwiftTransitionDemo.framework */; };
 		0904BCD021C2021C00D60F59 /* YSThreeStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0904BCCF21C2021C00D60F59 /* YSThreeStepViewController.swift */; };
 		0904BCD221C22AFD00D60F59 /* YSInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0904BCD121C22AFD00D60F59 /* YSInfoModel.swift */; };
-		0994D668219C384500A9C1CC /* YSPresentTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0994D667219C384500A9C1CC /* YSPresentTransition.swift */; };
-		0994D66A219C385B00A9C1CC /* YSDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0994D669219C385B00A9C1CC /* YSDismissTransition.swift */; };
-		09A1DF8321958FB50077421A /* YSViewControllerTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A1DF8221958FB50077421A /* YSViewControllerTransitionManager.swift */; };
-		09D3812F21B8EE4A00A78374 /* YSSwipeBackInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D3812E21B8EE4A00A78374 /* YSSwipeBackInteractionController.swift */; };
-		09D3813121B8F02500A78374 /* YSGestureTransitionBackContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D3813021B8F02500A78374 /* YSGestureTransitionBackContext.swift */; };
 		09EF517821918FF800730B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EF517721918FF800730B1E /* AppDelegate.swift */; };
 		09EF517A21918FF800730B1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EF517921918FF800730B1E /* ViewController.swift */; };
 		09EF517F21918FFA00730B1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09EF517E21918FFA00730B1E /* Assets.xcassets */; };
 		09EF518221918FFA00730B1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09EF518021918FFA00730B1E /* LaunchScreen.storyboard */; };
 		09EF518D21918FFB00730B1E /* YSSwiftTransitionDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EF518C21918FFB00730B1E /* YSSwiftTransitionDemoTests.swift */; };
 		09EF519821918FFB00730B1E /* YSSwiftTransitionDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EF519721918FFB00730B1E /* YSSwiftTransitionDemoUITests.swift */; };
-		09EF51A72191983C00730B1E /* YSTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EF51A62191983C00730B1E /* YSTransitionManager.swift */; };
 		09F5262821BA49850000FC23 /* YSNextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5262721BA49850000FC23 /* YSNextViewController.swift */; };
-		09F5262C21BE4A030000FC23 /* YSNavigationOperation+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5262B21BE4A030000FC23 /* YSNavigationOperation+UIViewController.swift */; };
 		296D3DE17E979E151AF25B7A /* Pods_YSSwiftTransitionDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BA2E4FD093FA30483BB1F3 /* Pods_YSSwiftTransitionDemoUITests.framework */; };
 		8863BFCDFE47CB77AD95143F /* Pods_YSSwiftTransitionDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 511339E3BA395908167C11E9 /* Pods_YSSwiftTransitionDemoTests.framework */; };
 /* End PBXBuildFile section */
@@ -48,11 +41,6 @@
 /* Begin PBXFileReference section */
 		0904BCCF21C2021C00D60F59 /* YSThreeStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSThreeStepViewController.swift; sourceTree = "<group>"; };
 		0904BCD121C22AFD00D60F59 /* YSInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSInfoModel.swift; sourceTree = "<group>"; };
-		0994D667219C384500A9C1CC /* YSPresentTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSPresentTransition.swift; sourceTree = "<group>"; };
-		0994D669219C385B00A9C1CC /* YSDismissTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSDismissTransition.swift; sourceTree = "<group>"; };
-		09A1DF8221958FB50077421A /* YSViewControllerTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSViewControllerTransitionManager.swift; sourceTree = "<group>"; };
-		09D3812E21B8EE4A00A78374 /* YSSwipeBackInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSSwipeBackInteractionController.swift; sourceTree = "<group>"; };
-		09D3813021B8F02500A78374 /* YSGestureTransitionBackContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSGestureTransitionBackContext.swift; sourceTree = "<group>"; };
 		09DA7CDF219D71B4008475F6 /* YSSwiftTransitionDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YSSwiftTransitionDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		09EF517421918FF800730B1E /* YSSwiftTransitionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YSSwiftTransitionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09EF517721918FF800730B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,9 +54,7 @@
 		09EF519321918FFB00730B1E /* YSSwiftTransitionDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YSSwiftTransitionDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09EF519721918FFB00730B1E /* YSSwiftTransitionDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSSwiftTransitionDemoUITests.swift; sourceTree = "<group>"; };
 		09EF519921918FFB00730B1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		09EF51A62191983C00730B1E /* YSTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSTransitionManager.swift; sourceTree = "<group>"; };
 		09F5262721BA49850000FC23 /* YSNextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YSNextViewController.swift; sourceTree = "<group>"; };
-		09F5262B21BE4A030000FC23 /* YSNavigationOperation+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YSNavigationOperation+UIViewController.swift"; sourceTree = "<group>"; };
 		0FD9040E802912CC93F0A46B /* Pods-YSSwiftTransitionDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSSwiftTransitionDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSSwiftTransitionDemo/Pods-YSSwiftTransitionDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		33BA2E4FD093FA30483BB1F3 /* Pods_YSSwiftTransitionDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YSSwiftTransitionDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4306FC0D4198A1A0E42730D3 /* Pods-YSSwiftTransitionDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YSSwiftTransitionDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YSSwiftTransitionDemoTests/Pods-YSSwiftTransitionDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -133,7 +119,6 @@
 		09EF517621918FF800730B1E /* YSSwiftTransitionDemo */ = {
 			isa = PBXGroup;
 			children = (
-				09EF51A5219193A600730B1E /* YSTransitionManager */,
 				09EF517721918FF800730B1E /* AppDelegate.swift */,
 				09EF517921918FF800730B1E /* ViewController.swift */,
 				09EF518021918FFA00730B1E /* LaunchScreen.storyboard */,
@@ -163,20 +148,6 @@
 				09EF519921918FFB00730B1E /* Info.plist */,
 			);
 			path = YSSwiftTransitionDemoUITests;
-			sourceTree = "<group>";
-		};
-		09EF51A5219193A600730B1E /* YSTransitionManager */ = {
-			isa = PBXGroup;
-			children = (
-				09F5262B21BE4A030000FC23 /* YSNavigationOperation+UIViewController.swift */,
-				09EF51A62191983C00730B1E /* YSTransitionManager.swift */,
-				09A1DF8221958FB50077421A /* YSViewControllerTransitionManager.swift */,
-				0994D667219C384500A9C1CC /* YSPresentTransition.swift */,
-				0994D669219C385B00A9C1CC /* YSDismissTransition.swift */,
-				09D3812E21B8EE4A00A78374 /* YSSwipeBackInteractionController.swift */,
-				09D3813021B8F02500A78374 /* YSGestureTransitionBackContext.swift */,
-			);
-			path = YSTransitionManager;
 			sourceTree = "<group>";
 		};
 		148C0454EBA27D924A98E282 /* Frameworks */ = {
@@ -364,6 +335,7 @@
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/YSTransitionManager/YSTransitionManager.framework",
 				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -374,6 +346,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YSTransitionManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,17 +428,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				09EF517A21918FF800730B1E /* ViewController.swift in Sources */,
-				09F5262C21BE4A030000FC23 /* YSNavigationOperation+UIViewController.swift in Sources */,
 				09EF517821918FF800730B1E /* AppDelegate.swift in Sources */,
-				09EF51A72191983C00730B1E /* YSTransitionManager.swift in Sources */,
-				09D3813121B8F02500A78374 /* YSGestureTransitionBackContext.swift in Sources */,
 				0904BCD221C22AFD00D60F59 /* YSInfoModel.swift in Sources */,
-				0994D66A219C385B00A9C1CC /* YSDismissTransition.swift in Sources */,
 				09F5262821BA49850000FC23 /* YSNextViewController.swift in Sources */,
-				0994D668219C384500A9C1CC /* YSPresentTransition.swift in Sources */,
-				09A1DF8321958FB50077421A /* YSViewControllerTransitionManager.swift in Sources */,
 				0904BCD021C2021C00D60F59 /* YSThreeStepViewController.swift in Sources */,
-				09D3812F21B8EE4A00A78374 /* YSSwipeBackInteractionController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
